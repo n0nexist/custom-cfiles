@@ -7,7 +7,7 @@
 */
 
 // Set to 1 if you want to see hidden files on startup
-#define SHOW_HIDDEN 0
+#define SHOW_HIDDEN 1
 
 // Set to 0 if you want to disable borders
 #define SHOW_BORDERS 1
@@ -16,7 +16,7 @@
 #define SHOW_SELECTION_COUNT 1
 
 // Set to 0 if you don't want to see PDF Previews
-#define SHOW_PDF_PREVIEWS 0
+#define SHOW_PDF_PREVIEWS 1
 
 // Program used to open non-text file (Eg: `xdg-open` or `thunar`)
 #define FILE_OPENER "xdg-open"
@@ -27,19 +27,36 @@
 // Clear Image Preview Script
 #define CLEARIMG "/usr/share/cfiles/scripts/clearimg_uberzug"
 
+// window style
+#define regular_file_style A_ITALIC
+#define other_file_style A_BOLD
+#define alert_style A_BOLD
+
 
 /*
     Color Settings
 */
 
+
 // Shell Color Number to use for directories
-#define DIR_COLOR 4
+#define DIR_COLOR 14
+// its background
+#define DIR_COLOR_BG 0
+// same thing but for the files window
+#define files_fg 14
+#define files_bg 0
+
 
 // Shell Color Number to use for file count which is displayed in the statusbar
-#define STATUS_FILECOUNT_COLOR 1
+#define STATUS_FILECOUNT_COLOR 14
+// its background
+#define STATUS_FILECOUNT_COLOR_BG 0
+
 
 // Shell Color Number to use for selected file which is displayed in the statusbar
-#define STATUS_SELECTED_COLOR 6
+#define STATUS_SELECTED_COLOR 14
+// its background
+#define STATUS_SELECTED_COLOR_BG 0
 
 
 /*

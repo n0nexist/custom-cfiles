@@ -193,9 +193,9 @@ void displayStatus()
 void displayAlert(char *message)
 {
     wclear(status_win);
-    wattron(status_win, A_BOLD);
+    wattron(status_win, alert_style);
     wprintw(status_win, "\n%s", message);
-    wattroff(status_win, A_BOLD);
+    wattroff(status_win, alert_style);
     wrefresh(status_win);
 }
 
@@ -475,9 +475,11 @@ void curses_init()
     noecho();
     curs_set(0);
     start_color();
-    init_pair(1, DIR_COLOR, 0);
-    init_pair(2, STATUS_FILECOUNT_COLOR, 0);
-    init_pair(3, STATUS_SELECTED_COLOR, 0);
+    init_pair(1, DIR_COLOR, DIR_COLOR_BG);
+    init_pair(2, STATUS_FILECOUNT_COLOR, STATUS_FILECOUNT_COLOR_BG);
+    init_pair(3, STATUS_SELECTED_COLOR, STATUS_SELECTED_COLOR_BG);
+    init_pair(4,files_fg,files_bg);
+
 }
 
 
@@ -2097,13 +2099,13 @@ int main(int argc, char* argv[])
                 wattroff(current_win, A_STANDOUT);
             if( is_regular_file(temp_dir) == 0 )
             {
-                wattron(current_win, A_BOLD);
+                wattron(current_win, regular_file_style);
                 wattron(current_win, COLOR_PAIR(1));
             }
             else
             {
-                wattroff(current_win, A_BOLD);
-                wattroff(current_win, COLOR_PAIR(1));
+                wattroff(current_win, other_file_style);
+                wattroff(current_win, COLOR_PAIR(4));
             }
             wmove(current_win,t+1,2);
             if( checkClipboard(temp_dir) == 0)
@@ -2216,13 +2218,13 @@ int main(int argc, char* argv[])
                     snprintf(temp_dir, allocSize+1, "%s/%s", next_dir, next_directories[i]);
                     if( is_regular_file(temp_dir) == 0 )
                     {
-                        wattron(preview_win, A_BOLD);
-                        wattron(preview_win, COLOR_PAIR(1));
+                        wattron(preview_win, regular_file_style);
+                        wattron(preview_win, COLOR_PAIR(4));
                     }
                     else
                     {
-                        wattroff(preview_win, A_BOLD);
-                        wattroff(preview_win, COLOR_PAIR(1));
+                        wattroff(preview_win, regular_file_style);
+                        wattroff(preview_win, COLOR_PAIR(4));
                     }
                     wprintw(preview_win, "%.*s\n", maxx/2 - 3, next_directories[i]);
                 }
@@ -2248,8 +2250,8 @@ int main(int argc, char* argv[])
 
         // Disable STANDOUT and colors attributes if enabled
         wattroff(current_win, A_STANDOUT);
-        wattroff(current_win, COLOR_PAIR(1));
-        wattroff(preview_win, COLOR_PAIR(1));
+        wattroff(current_win, COLOR_PAIR(4));
+        wattroff(preview_win, COLOR_PAIR(4));
 
         // Draw borders and refresh windows
         refreshWindows();
