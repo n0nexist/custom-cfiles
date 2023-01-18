@@ -1,4 +1,13 @@
-<h1 align="center">cfiles</h1>
+# INFO
+```
+cfiles is a file manager written in c.
+this fork adds more customization options
+to the program's config file (config.h)
+```
+
+
+
+<h1 align="center">cfiles [original readme]</h1>
 
 <p align="center">
 <a href="https://github.com/mananapr/cfiles/releases/latest"><img src="https://img.shields.io/github/release/mananapr/cfiles/all.svg" alt="Latest release" /></a>
